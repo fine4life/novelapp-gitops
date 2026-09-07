@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: novelapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: novelapp
+  template:
+    metadata:
+      labels:
+        app: novelapp
+    spec:
+      containers:
+        - name: novelapp
+          image: iheanyi014/novelapp:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5187
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+            - name: ASPNETCORE_HTTP_PORTS
+              value: "8080"
